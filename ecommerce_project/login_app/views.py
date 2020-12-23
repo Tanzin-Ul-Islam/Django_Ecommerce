@@ -33,14 +33,15 @@ def login_sys(request):
             user = authenticate(username = username, password = password)
             if user is not None:
                 login(request, user)
-                return HttpResponse('Logged in')
+                messages.success(request, 'Successfully logged in!')
+                return HttpResponseRedirect(reverse('shop_app:home'))
     return render(request, 'login_app/login.html', context={'form':form})
 
 @login_required
 def logout_sys(request):
     logout(request)
     messages.warning(request, 'You are not logged in!!')
-    return HttpResponse('Logged out')
+    return HttpResponseRedirect(reverse('shop_app:home'))
 
 @login_required
 def user_profile(request):

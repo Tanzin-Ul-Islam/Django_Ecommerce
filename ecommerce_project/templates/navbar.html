@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% load cart_tag %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'shop_app:home' %}">Paradox</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" style="color:white;">
+      <ul class="navbar-nav ml-auto">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'order_app:cart' %}"><i class="fa fa-shopping-cart"></i>&ensp;Cart
+          <span class="badge badge-light">{{request.user|cart_total}}</span>
+        </a></li>&ensp;
+        <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fa fa-user"></i>{{request.user.profile.username}}</a>
+          <div class="dropdown-menu" aria-labelledby="nabbarDropdown">
+            <a class="dropdown-item" href="{% url 'login_app:profile' %}">Profile</a>
+            <a class="dropdown-item" href="#">Orders</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'login_app:logout' %}">Logout</a>
+          </div>
+        </li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'login_app:login' %}">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'login_app:signup' %}">Sign Up</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
