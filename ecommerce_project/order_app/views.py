@@ -26,7 +26,7 @@ def add_to_cart(request, pk):
         order.save()
         order.orderitems.add(order_item[0])
         messages.info(request, "Item was added to Cart")
-        return redirect('shop_app:home')
+        return redirect('order_app:cart')
 
 @login_required
 def cart_view(request):

@@ -15,7 +15,7 @@
              <i class="fa fa-user"></i>{{request.user.profile.username}}</a>
           <div class="dropdown-menu" aria-labelledby="nabbarDropdown">
             <a class="dropdown-item" href="{% url 'login_app:profile' %}">Profile</a>
-            <a class="dropdown-item" href="#">Orders</a>
+            <a class="dropdown-item" href="{% url 'payment_app:order' %}">Orders</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{% url 'login_app:logout' %}">Logout</a>
           </div>
